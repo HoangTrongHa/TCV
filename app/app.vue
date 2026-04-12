@@ -1039,6 +1039,20 @@ img {
     order: initial;
   }
 
+  .hero-grid {
+    min-height: auto;
+    align-items: start;
+  }
+
+  .hero-copy,
+  .hero-side {
+    max-width: 100%;
+  }
+
+  .hero-side {
+    margin-left: 0;
+  }
+
   .feature-row-wide .feature-copy,
   .feature-row-wide .feature-media,
   .feature-row-portrait .feature-copy,
@@ -1073,12 +1087,24 @@ img {
     width: min(100% - 24px, 1180px);
   }
 
+  .hero-side p,
+  .feature-copy p,
+  .support-copy p,
+  .match-copy p {
+    font-size: 0.96rem;
+    line-height: 1.75;
+  }
+
   .hero-stats {
     gap: 0.8rem;
   }
 
   .stat-card {
     min-width: calc(50% - 0.4rem);
+  }
+
+  .cta-actions .button {
+    min-width: 220px;
   }
 
   .site-footer {
@@ -1088,6 +1114,11 @@ img {
 }
 
 @media (max-width: 560px) {
+  .site-header {
+    gap: 0.75rem;
+    padding: 12px 14px;
+  }
+
   .button {
     padding: 0.9rem 1rem;
     font-size: 0.62rem;
@@ -1102,6 +1133,20 @@ img {
     font-size: clamp(3.4rem, 18vw, 5rem);
   }
 
+  .hero-title span {
+    font-size: 0.86em;
+    letter-spacing: -0.06em;
+  }
+
+  .hero {
+    min-height: auto;
+    padding-top: 6.6rem;
+  }
+
+  .hero-stats {
+    margin-top: 1.6rem;
+  }
+
   .stat-card {
     min-width: 100%;
   }
@@ -1111,15 +1156,62 @@ img {
     padding: 1.35rem;
   }
 
+  .feature-row,
+  .services {
+    gap: 3rem;
+  }
+
+  .client-pill {
+    min-width: 150px;
+    padding: 1.2rem 0.9rem;
+    font-size: 0.92rem;
+  }
+
+  .match-copy,
+  .match-media {
+    min-height: 320px;
+  }
+
+  .match-media {
+    min-height: 260px;
+  }
+
   .feature-copy h2,
   .support-copy h3,
   .match-copy h2 {
     font-size: 2.2rem;
   }
 
+  .cta {
+    padding: 5.5rem 0 6rem;
+  }
+
+  .cta-actions {
+    flex-direction: column;
+  }
+
+  .cta-actions .button {
+    width: 100%;
+  }
+
+  .site-footer {
+    padding: 1.5rem 18px 2.2rem;
+  }
+
   .pulse-orb {
     width: 70px;
     height: 70px;
+  }
+}
+
+@media (max-width: 420px) {
+  .hero-title {
+    font-size: clamp(2.9rem, 15vw, 4rem);
+    line-height: 0.9;
+  }
+
+  .hero-title span {
+    font-size: 0.82em;
   }
 }
 
