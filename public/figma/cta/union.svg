@@ -1,0 +1,18 @@
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 3033 1546" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Union" filter="url(#filter0_f_0_5)">
+<path d="M2125.93 200C2516.43 200 2833 456.429 2833 772.75C2833 1089.07 2516.43 1345.5 2125.93 1345.5C1904.12 1345.5 1650.07 1295.18 1471.98 1193.73C1423.92 1166.36 1364.57 1162.62 1315.27 1187.68C1126.23 1283.78 895.398 1346 742.273 1346C442.784 1346 200 1131.99 200 868C200 604.008 354.011 336.5 653.5 336.5C801.088 336.5 1042.42 395.638 1249.26 487.22C1310.83 514.481 1383.58 496.645 1431.92 449.771C1575.53 310.519 1804.22 210.224 2125.93 200Z" fill="url(#paint0_linear_0_5)"/>
+</g>
+<defs>
+<filter id="filter0_f_0_5" x="0" y="0" width="3033" height="1546" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="100" result="effect1_foregroundBlur_0_5"/>
+</filter>
+<linearGradient id="paint0_linear_0_5" x1="1484" y1="802.5" x2="1451" y2="439.101" gradientUnits="userSpaceOnUse">
+<stop stop-color="#FE7100"/>
+<stop offset="0.133878" stop-color="#FFAA33"/>
+<stop offset="0.365385" stop-color="#FA6F01"/>
+<stop offset="1" stop-color="#A42502"/>
+</linearGradient>
+</defs>
+</svg>

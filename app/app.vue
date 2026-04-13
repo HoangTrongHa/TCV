@@ -59,12 +59,41 @@ const serviceSection = {
   ],
 }
 
-const services = [
-  { id: '', title: '', description: '', action: '', image: '' },
-  { id: '', title: '', description: '', action: '', image: '' },
-]
+const serviceFocus = {
+  main: '/figma/sections/focus-main.png',
+  overlayA: '/figma/sections/focus-overlay-a.png',
+  overlayB: '/figma/sections/focus-overlay-b.png',
+  icon: '/figma/sections/focus-icon.svg',
+  description:
+    'Ghi hinh dac ta cho san pham cao cap hoac KOLs. Bat tron tung chuyen dong sac net, bieu cam chi tiet va suc manh hinh the thong qua he thong lens macro va high-speed.',
+  bullets: ['PRODUCT FOCUS', 'ATHLETE MOTION', '60-120 FPS'],
+}
 
-const miniServices: Array<{ id: string; title: string; description: string; image: string }> = []
+const serviceEvent = {
+  icon: '/figma/sections/event-icon.svg',
+  badge: 'HIGH-ENERGY RECAP',
+  main: '/figma/sections/event-main.png',
+  title: 'EVENT RECAP & HIGHLIGHT',
+  description:
+    'Luu giu khong khi bung no cua su kien. Bien tap nhip dieu nhanh, am nhac soi dong va goc quay da dang de tai hien trai nghiem chan thuc nhat.',
+  deliverables: [
+    { label: 'DELIVERABLE 01', value: '4K Cinematic Video Recap' },
+    { label: 'DELIVERABLE 02', value: '10 Professional Highlights', tag: 'BADGE INCLUDED' },
+  ],
+}
+
+const serviceProduct = {
+  main: '/figma/sections/product-main.png',
+  eyebrow: 'DETAIL ORIENTED',
+  title: 'PRODUCT REVIEW',
+  description:
+    'Truyen tai thong diep thuong hieu truc quan, tin cay. Tap trung vao tinh nang, trai nghiem su dung thuc te va ve dep tham my cua san pham qua nhung khung hinh tinh te.',
+  stats: [
+    { value: '4K', label: 'RESOLUTION' },
+    { value: 'Macro', label: 'DETAILING' },
+    { value: 'Studio', label: 'ENVIRONMENT' },
+  ],
+}
 
 useHead({
   title: 'Production Agency - Portfolio',
@@ -156,100 +185,96 @@ useHead({
         </div>
       </section>
 
-      <section v-if="false" class="services section">
-        <article class="service-row">
-          <div class="service-copy">
-            <span>{{ services[0].id }}</span>
-            <h2>{{ services[0].title }}</h2>
-            <p>{{ services[0].description }}</p>
-            <a href="#">{{ services[0].action }} →</a>
-          </div>
-          <div class="service-media wide">
-            <img :src="services[0].image" :alt="services[0].title">
-          </div>
-        </article>
-
-        <article class="service-row reverse">
-          <div class="service-copy">
-            <span>{{ services[1].id }}</span>
-            <h2>{{ services[1].title }}</h2>
-            <p>{{ services[1].description }}</p>
-            <button type="button">{{ services[1].action }}</button>
-          </div>
-          <div class="service-media tall">
-            <img :src="services[1].image" :alt="services[1].title">
-          </div>
-        </article>
-
-        <div class="mini-grid">
-          <article v-for="item in miniServices" :key="item.id" class="mini-card">
-            <div>
-              <span>{{ item.id }}</span>
-              <h3>{{ item.title }}</h3>
-              <p>{{ item.description }}</p>
-            </div>
-            <div class="mini-media">
-              <img :src="item.image" :alt="item.title">
-            </div>
-          </article>
+      <section class="service-focus" data-node-id="19:1631">
+        <div class="service-focus-media">
+          <img class="service-focus-main" :src="serviceFocus.main" alt="Focus cam main visual">
+          <img class="service-focus-overlay service-focus-overlay-a" :src="serviceFocus.overlayA" alt="">
+          <img class="service-focus-overlay service-focus-overlay-b" :src="serviceFocus.overlayB" alt="">
         </div>
-      </section>
 
-      <section class="full-match section">
-        <div class="split-card">
-          <div class="split-copy">
-            <h2>
-              GHI HINH
-              <br>
-              TOAN TRAN
-              <br>
-              DAU
-              <br>
-              (FULL MATCH)
-            </h2>
-            <p>
-              Giai phap ghi hinh the thao va livestream voi tu duy broadcast, giu tron khoanh khac
-              quan trong.
-            </p>
-            <a href="#contact">BOOK COVERAGE</a>
+        <div class="service-focus-content">
+          <div class="service-focus-icon">
+            <img :src="serviceFocus.icon" alt="">
           </div>
-          <div class="split-media">
-            <img
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCaFIQztd3-amw3_Z45xy-Z5sUWqJUQR6tGSZ1vodAsdJjZeCHxHz8V62zSi93xb3_8WrebWSuttW3ar_DVTVJ63mPVksIzXADkgOpdiGaLkQS9UgQyJWTie6z0aI6u48biSKsxreDHnReDlNVR7RSKsbeuc6dOMD77jRNBI5VTDLu3hNQ2Sp7cbEawd5v4EZ7wuL7a0P1QLrBt2p6Wf5to5d5iGLjzrUFlozH0STWinaASJES5WPee9pQTis4d1uG8qlnpKqCXmZJy"
-              alt="Football full match"
-            >
-          </div>
-        </div>
-      </section>
-
-      <section id="contact" class="cta">
-        <div class="section">
           <h2>
-            LET'S BUILD
+            FOCUS
             <br>
-            YOUR VISION.
+            CAM
           </h2>
-          <div class="cta-buttons">
-            <a class="cta-primary" href="mailto:hello@cinemacore.vn">GET IN TOUCH</a>
-            <a class="cta-secondary" href="#">OUR PORTFOLIO</a>
+          <p>{{ serviceFocus.description }}</p>
+          <div class="service-focus-bullets">
+            <div v-for="item in serviceFocus.bullets" :key="item" class="service-focus-bullet">
+              <span />
+              <p>{{ item }}</p>
+            </div>
           </div>
         </div>
       </section>
+
+      <section class="service-event" data-node-id="21:2159">
+        <div class="service-event-content">
+          <div class="service-event-head">
+            <img :src="serviceEvent.icon" alt="">
+            <p>{{ serviceEvent.badge }}</p>
+          </div>
+
+          <h2>
+            EVENT
+            <br>
+            RECAP
+            <br>
+            &amp; HIGHLIGHT
+          </h2>
+          <p class="service-event-description">{{ serviceEvent.description }}</p>
+
+          <div class="service-event-deliverables">
+            <div class="service-event-deliverable">
+              <p class="service-event-deliverable-label">{{ serviceEvent.deliverables[0].label }}</p>
+              <p class="service-event-deliverable-value">{{ serviceEvent.deliverables[0].value }}</p>
+            </div>
+
+            <div class="service-event-deliverable">
+              <p class="service-event-deliverable-label">{{ serviceEvent.deliverables[1].label }}</p>
+              <div class="service-event-deliverable-line">
+                <p class="service-event-deliverable-value">{{ serviceEvent.deliverables[1].value }}</p>
+                <p class="service-event-deliverable-tag">{{ serviceEvent.deliverables[1].tag }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="service-event-media">
+          <img :src="serviceEvent.main" alt="Event recap visual">
+        </div>
+      </section>
+
+      <section class="service-product" data-node-id="21:2080">
+        <div class="service-product-media">
+          <img :src="serviceProduct.main" alt="Product review visual">
+        </div>
+
+        <div class="service-product-content">
+          <p class="service-product-eyebrow">{{ serviceProduct.eyebrow }}</p>
+          <h2>
+            PRODUCT
+            <br>
+            REVIEW
+          </h2>
+          <p class="service-product-description">{{ serviceProduct.description }}</p>
+          <div class="service-product-stats">
+            <div v-for="item in serviceProduct.stats" :key="item.label" class="service-product-stat">
+              <strong>{{ item.value }}</strong>
+              <small>{{ item.label }}</small>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <FullMatchSection />
+      <ContactSection />
     </main>
 
-    <footer class="footer">
-      <div class="section footer-inner">
-        <div class="brand">CINEMA CORE</div>
-        <div class="links">
-          <a href="#">CONTACT</a>
-          <a href="#">INSTAGRAM</a>
-          <a href="#">VIMEO</a>
-          <a href="#">LINKEDIN</a>
-          <a href="#">PRIVACY</a>
-        </div>
-        <p>© 2026 CINEMA CORE PRODUCTIONS. ALL RIGHTS RESERVED.</p>
-      </div>
-    </footer>
+    <AppFooter />
   </div>
 </template>
 
@@ -569,6 +594,338 @@ h3 {
   transform: scaleX(-1);
 }
 
+.service-focus,
+.service-event,
+.service-product {
+  width: min(1920px, 100%);
+  margin: 0 auto;
+  padding-inline: clamp(20px, 12.5vw, 240px);
+}
+
+.service-focus {
+  display: flex;
+  align-items: flex-start;
+  gap: 266px;
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+.service-focus-media {
+  position: relative;
+  width: 520px;
+  height: 927px;
+  flex-shrink: 0;
+}
+
+.service-focus-main {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.service-focus-overlay {
+  position: absolute;
+  object-fit: cover;
+  display: block;
+  z-index: 1;
+}
+
+.service-focus-overlay-a {
+  width: 396px;
+  height: 709px;
+  left: 189px;
+  top: 109px;
+}
+
+.service-focus-overlay-b {
+  width: 326px;
+  height: 583px;
+  left: 323px;
+  top: 172px;
+}
+
+.service-focus-content {
+  width: 640px;
+  min-height: 927px;
+  padding: 68px 96px 96px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.service-focus-icon img {
+  width: 42px;
+  height: 41px;
+  display: block;
+}
+
+.service-focus-content h2 {
+  margin: 48px 0 32px;
+  color: #e5e2e1;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 72px;
+  font-weight: 700;
+  line-height: 72px;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.service-focus-content > p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.6);
+  font-family: 'Inter', sans-serif;
+  font-size: 20px;
+  line-height: 28px;
+}
+
+.service-focus-bullets {
+  margin-top: 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.service-focus-bullet {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 34px;
+  padding: 8px 0 9px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.service-focus-bullet span {
+  width: 8px;
+  height: 8px;
+  background: #ff5722;
+  flex-shrink: 0;
+}
+
+.service-focus-bullet p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.6);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 16px;
+  line-height: 16px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+.service-event {
+  display: flex;
+  align-items: flex-start;
+  gap: 254px;
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+.service-event-content {
+  width: 585px;
+  padding-block: 96px;
+}
+
+.service-event-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding-bottom: 48px;
+}
+
+.service-event-head img {
+  width: 32.325px;
+  height: 30.75px;
+  display: block;
+}
+
+.service-event-head p {
+  margin: 0;
+  padding: 5px 13px;
+  border: 1px solid #ff5722;
+  background: rgba(255, 87, 34, 0.1);
+  color: #ff5722;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 15px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.service-event-content h2 {
+  margin: 0;
+  padding-bottom: 32px;
+  color: #e5e2e1;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 72px;
+  font-weight: 700;
+  line-height: 72px;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.service-event-description {
+  margin: 0;
+  max-width: 576px;
+  padding-bottom: 48px;
+  color: rgba(255, 255, 255, 0.6);
+  font-family: 'Inter', sans-serif;
+  font-size: 20px;
+  line-height: 28px;
+}
+
+.service-event-deliverables {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.service-event-deliverable {
+  display: grid;
+  grid-template-columns: 164px minmax(0, 1fr);
+  align-items: center;
+  gap: 32px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 17px;
+}
+
+.service-event-deliverable-label {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.6);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 4.2px;
+  text-transform: uppercase;
+}
+
+.service-event-deliverable-value {
+  margin: 0;
+  color: #fff;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 28px;
+}
+
+.service-event-deliverable-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.service-event-deliverable-tag {
+  margin: 0;
+  padding: 4px 8px;
+  background: #ff5722;
+  color: #fff;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 15px;
+  text-transform: uppercase;
+}
+
+.service-event-media {
+  width: 522px;
+  height: 930px;
+  flex-shrink: 0;
+}
+
+.service-event-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.service-product {
+  display: flex;
+  align-items: flex-start;
+  gap: 281px;
+  padding-top: 80px;
+  padding-bottom: 160px;
+}
+
+.service-product-media {
+  width: 520px;
+  height: 927px;
+  flex-shrink: 0;
+}
+
+.service-product-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.service-product-content {
+  width: 640px;
+  min-height: 623px;
+  padding: 96px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.service-product-eyebrow {
+  margin: 0;
+  color: #ff5722;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 5.6px;
+  text-transform: uppercase;
+}
+
+.service-product-content h2 {
+  margin: 24px 0 32px;
+  color: #e5e2e1;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 72px;
+  font-weight: 700;
+  line-height: 72px;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.service-product-description {
+  margin: 0 0 48px;
+  color: rgba(255, 255, 255, 0.6);
+  font-family: 'Inter', sans-serif;
+  font-size: 20px;
+  line-height: 28px;
+}
+
+.service-product-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 32px;
+}
+
+.service-product-stat strong {
+  display: block;
+  color: #fff;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 32px;
+}
+
+.service-product-stat small {
+  display: block;
+  color: rgba(255, 255, 255, 0.4);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 12px;
+  line-height: 15px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
 .services {
   padding: 4rem 0 5rem;
   display: grid;
@@ -799,6 +1156,76 @@ h3 {
 }
 
 @media (max-width: 1024px) {
+  .service-focus,
+  .service-event,
+  .service-product {
+    padding-inline: 28px;
+    gap: 24px;
+    flex-direction: column;
+  }
+
+  .service-focus {
+    padding-top: 64px;
+    padding-bottom: 64px;
+  }
+
+  .service-event {
+    padding-top: 64px;
+    padding-bottom: 64px;
+  }
+
+  .service-product {
+    padding-top: 64px;
+    padding-bottom: 96px;
+  }
+
+  .service-focus-media,
+  .service-event-media,
+  .service-product-media {
+    width: min(100%, 640px);
+    height: auto;
+    aspect-ratio: 520 / 927;
+  }
+
+  .service-focus-overlay {
+    display: none;
+  }
+
+  .service-focus-content,
+  .service-event-content,
+  .service-product-content {
+    width: 100%;
+    min-height: 0;
+    padding: 0;
+  }
+
+  .service-event-head {
+    padding-bottom: 28px;
+  }
+
+  .service-event-content h2,
+  .service-product-content h2,
+  .service-focus-content h2 {
+    font-size: clamp(44px, 8vw, 58px);
+    line-height: 1.04;
+  }
+
+  .service-event-description,
+  .service-product-description,
+  .service-focus-content > p {
+    font-size: 18px;
+    line-height: 27px;
+  }
+
+  .service-event-deliverable {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .service-product-stats {
+    gap: 20px;
+  }
+
   .services-v2 {
     padding: 64px 28px;
     border-right: 0;
@@ -847,6 +1274,54 @@ h3 {
 @media (max-width: 820px) {
   .section {
     width: min(1200px, calc(100% - 28px));
+  }
+
+  .service-focus,
+  .service-event,
+  .service-product {
+    padding-inline: 14px;
+  }
+
+  .service-focus {
+    padding-top: 56px;
+    padding-bottom: 56px;
+  }
+
+  .service-event {
+    padding-top: 56px;
+    padding-bottom: 56px;
+  }
+
+  .service-product {
+    padding-top: 56px;
+    padding-bottom: 72px;
+  }
+
+  .service-focus-content h2,
+  .service-event-content h2,
+  .service-product-content h2 {
+    font-size: clamp(36px, 11vw, 48px);
+  }
+
+  .service-focus-content > p,
+  .service-event-description,
+  .service-product-description {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .service-focus-bullets {
+    margin-top: 24px;
+  }
+
+  .service-event-deliverable-line {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .service-product-stats {
+    grid-template-columns: 1fr;
+    gap: 16px;
   }
 
   .services-v2 {
@@ -941,6 +1416,56 @@ h3 {
 }
 
 @media (max-width: 560px) {
+  .service-focus,
+  .service-event,
+  .service-product {
+    padding-inline: 14px;
+  }
+
+  .service-focus {
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
+
+  .service-event {
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
+
+  .service-product {
+    padding-top: 48px;
+    padding-bottom: 64px;
+  }
+
+  .service-focus-content h2,
+  .service-event-content h2,
+  .service-product-content h2 {
+    font-size: clamp(32px, 12vw, 40px);
+    margin-bottom: 20px;
+  }
+
+  .service-focus-content > p,
+  .service-event-description,
+  .service-product-description {
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+  .service-event-head p,
+  .service-event-deliverable-label,
+  .service-focus-bullet p,
+  .service-product-eyebrow {
+    font-size: 11px;
+    line-height: 16px;
+    letter-spacing: 2px;
+  }
+
+  .service-event-deliverable-value,
+  .service-product-stat strong {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
   .services-v2 {
     padding: 48px 14px;
   }
