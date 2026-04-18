@@ -203,14 +203,14 @@ onBeforeUnmount(() => {
               playsinline
               loop
               muted
-              preload="metadata"
+              preload="none"
             />
           </div>
         </SwiperSlide>
       </Swiper>
       <template #fallback>
         <div class="service-focus-card">
-          <img class="service-focus-video" :src="props.poster" alt="Focus cam visual">
+          <img class="service-focus-video" :src="props.poster" alt="Focus cam visual" loading="lazy" decoding="async">
         </div>
       </template>
     </ClientOnly>

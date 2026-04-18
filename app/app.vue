@@ -37,12 +37,22 @@ const getClientLogoStyle = (logo: { src: string; size: string; position: string 
 
 const { t } = useI18n()
 const localeHead = useLocaleHead({ addSeoAttributes: true })
+const image = useImage()
+
+const optimizedPoster = (src: string, width: number, height: number, quality = 64) => image(src, {
+  format: 'webp',
+  width,
+  height,
+  quality,
+  fit: 'cover',
+})
 
 const serviceSection = computed(() => ({
   title: t('servicesV2.title'),
   accent: t('servicesV2.accent'),
   description: t('servicesV2.description'),
   video: 'https://pub-443004ab6e0841e5afb8c165e0f39102.r2.dev/tvc_web.mp4',
+  poster: optimizedPoster('/figma/services/service-hero.png', 1600, 1060, 66),
   arrows: {
     left: '/figma/services/arrow-left.svg',
     right: '/figma/services/arrow-right.svg',
@@ -76,7 +86,7 @@ const serviceProductVideos = [
 
 const serviceFocus = computed(() => ({
   icon: '/figma/sections/focus-icon.svg',
-  poster: '/figma/sections/focus-main.png',
+  poster: optimizedPoster('/figma/sections/focus-main.png', 1040, 1854, 62),
   videos: serviceFocusVideos,
   titleLine1: t('serviceFocus.titleLine1'),
   titleLine2: t('serviceFocus.titleLine2'),
@@ -87,7 +97,7 @@ const serviceFocus = computed(() => ({
 const serviceEvent = computed(() => ({
   icon: '/figma/sections/event-icon.svg',
   badge: t('serviceEvent.badge'),
-  main: '/figma/sections/event-main.png',
+  main: optimizedPoster('/figma/sections/event-main.png', 1044, 1862, 62),
   video: serviceEventVideoUrl,
   titleLine1: t('serviceEvent.titleLine1'),
   titleLine2: t('serviceEvent.titleLine2'),
@@ -106,7 +116,7 @@ const serviceEvent = computed(() => ({
 }))
 
 const serviceProduct = computed(() => ({
-  main: '/figma/sections/product-main.png',
+  main: optimizedPoster('/figma/sections/product-main.png', 1040, 1856, 62),
   videos: serviceProductVideos,
   eyebrow: t('serviceProduct.eyebrow'),
   titleLine1: t('serviceProduct.titleLine1'),
@@ -304,8 +314,15 @@ useHead(() => ({
     { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
     { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
     {
-      rel: 'stylesheet',
-      href: 'https://fonts.googleapis.com/css2?family=Epilogue:wght@400;700;800;900&family=Inter:wght@300;400;600;700;800&family=Space+Grotesk:wght@400;700&display=swap',
+      rel: 'preload',
+      as: 'style',
+      href: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Space+Grotesk:wght@400;700&display=optional',
+      onload: "this.onload=null;this.rel='stylesheet'",
+    },
+  ],
+  noscript: [
+    {
+      children: '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Space+Grotesk:wght@400;700&display=optional">',
     },
   ],
 }))
@@ -377,11 +394,11 @@ useHead(() => ({
             ref="serviceVideoRef"
             class="services-v2-media"
             :src="serviceSection.video"
-            poster="/figma/services/service-hero.png"
+            :poster="serviceSection.poster"
             muted
             playsinline
             loop
-            preload="metadata"
+            preload="none"
           />
         </div>
       </section>
@@ -395,7 +412,7 @@ useHead(() => ({
 
         <div class="service-focus-content">
           <div class="service-focus-icon">
-            <img :src="serviceFocus.icon" alt="">
+            <img :src="serviceFocus.icon" alt="" loading="lazy" decoding="async">
           </div>
           <h2>
             {{ serviceFocus.titleLine1 }}
@@ -415,7 +432,7 @@ useHead(() => ({
       <section class="service-event" data-node-id="21:2159">
         <div class="service-event-content">
           <div class="service-event-head">
-            <img :src="serviceEvent.icon" alt="">
+            <img :src="serviceEvent.icon" alt="" loading="lazy" decoding="async">
             <p>{{ serviceEvent.badge }}</p>
           </div>
 
@@ -456,7 +473,7 @@ useHead(() => ({
             playsinline
             loop
             muted
-            preload="metadata"
+            preload="none"
           />
         </div>
       </section>
@@ -556,7 +573,7 @@ img {
 }
 
 .brand {
-  font-family: 'Epilogue', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 1rem;
   font-weight: 800;
   letter-spacing: -0.04em;
@@ -574,7 +591,7 @@ img {
 h2,
 h3 {
   margin: 0;
-  font-family: 'Epilogue', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-weight: 900;
   line-height: 0.88;
   letter-spacing: -0.05em;
@@ -610,6 +627,9 @@ h3 {
   letter-spacing: 0;
   line-height: 81px;
   text-transform: uppercase;
+  min-height: 81px;
+  min-width: 8.6ch;
+  font-size-adjust: 0.53;
 }
 
 .clients-note {
@@ -1302,7 +1322,7 @@ h3 {
   display: inline-block;
   margin-bottom: 0.6rem;
   color: rgba(255, 87, 26, 0.5);
-  font-family: 'Epilogue', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 2.7rem;
   font-weight: 800;
 }
@@ -1371,7 +1391,7 @@ h3 {
 
 .mini-card span {
   color: rgba(255, 87, 26, 0.5);
-  font-family: 'Epilogue', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 1.7rem;
   font-weight: 800;
 }
@@ -1457,7 +1477,7 @@ h3 {
 .cta-primary,
 .cta-secondary {
   padding: 0.62rem 0.95rem;
-  font-family: 'Epilogue', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 0.54rem;
   font-weight: 800;
   letter-spacing: 0.18em;

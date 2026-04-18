@@ -9,8 +9,8 @@ const ctaAssets = {
 
 <template>
   <section id="contact" class="contact-cta" data-node-id="21:2008">
-    <img class="contact-cta__union" :src="ctaAssets.union" alt="" aria-hidden="true">
-    <img class="contact-cta__ellipse" :src="ctaAssets.ellipse" alt="" aria-hidden="true">
+    <img class="contact-cta__union" :src="ctaAssets.union" alt="" aria-hidden="true" loading="lazy" decoding="async">
+    <img class="contact-cta__ellipse" :src="ctaAssets.ellipse" alt="" aria-hidden="true" loading="lazy" decoding="async">
 
     <div class="contact-cta__inner">
       <h2>

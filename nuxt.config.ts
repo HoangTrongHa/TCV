@@ -7,7 +7,7 @@ export default defineNuxtConfig({
       include: ['@vue/devtools-core', '@vue/devtools-kit'],
     },
   },
-  modules: ['@nuxtjs/i18n'],
+  modules: ['@nuxt/image', '@nuxtjs/i18n'],
   i18n: {
     baseUrl: process.env.NUXT_PUBLIC_SITE_URL || 'http://localhost:3000',
     defaultLocale: 'vi',

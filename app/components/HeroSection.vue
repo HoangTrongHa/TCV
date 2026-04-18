@@ -173,7 +173,7 @@ p {
   color: rgba(255, 255, 255, 0.7);
   font-family: 'Space Grotesk', sans-serif;
   font-size: 30px;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 36px;
 }
 

@@ -15,7 +15,7 @@ const fullMatchAssets = {
         <div class="full-match-v2__top">
           <div class="full-match-v2__head">
             <span class="full-match-v2__badge">{{ t('fullMatch.badge') }}</span>
-            <img :src="fullMatchAssets.icon" alt="">
+            <img :src="fullMatchAssets.icon" alt="" loading="lazy" decoding="async">
           </div>
 
           <h2>
@@ -30,14 +30,14 @@ const fullMatchAssets = {
         </div>
 
         <div class="full-match-v2__meta">
-          <img :src="fullMatchAssets.camera" alt="">
+          <img :src="fullMatchAssets.camera" alt="" loading="lazy" decoding="async">
           <div class="full-match-v2__line" />
           <span>{{ t('fullMatch.meta') }}</span>
         </div>
       </div>
 
       <div class="full-match-v2__right" aria-hidden="true">
-        <img :src="fullMatchAssets.overlay" alt="">
+        <img :src="fullMatchAssets.overlay" alt="" loading="lazy" decoding="async">
         <div class="full-match-v2__overlay" />
       </div>
     </div>

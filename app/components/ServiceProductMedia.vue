@@ -196,13 +196,13 @@ onBeforeUnmount(() => {
               :poster="props.poster"
               playsinline
               muted
-              preload="metadata"
+              preload="none"
               @ended="onVideoEnded(index)"
             />
           </SwiperSlide>
         </Swiper>
         <template #fallback>
-          <img class="service-product-video" :src="props.poster" alt="Product review visual">
+          <img class="service-product-video" :src="props.poster" alt="Product review visual" loading="lazy" decoding="async">
         </template>
       </ClientOnly>
     </div>
@@ -224,10 +224,10 @@ onBeforeUnmount(() => {
 
       <div class="service-product-arrows">
         <button type="button" aria-label="Previous product video" @click="onPrev">
-          <img :src="props.leftArrow" alt="">
+          <img :src="props.leftArrow" alt="" loading="lazy" decoding="async">
         </button>
         <button type="button" aria-label="Next product video" @click="onNext">
-          <img :src="props.rightArrow" alt="">
+          <img :src="props.rightArrow" alt="" loading="lazy" decoding="async">
         </button>
       </div>
     </div>
