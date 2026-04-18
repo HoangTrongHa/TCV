@@ -1,0 +1,106 @@
+{
+  "seo": {
+    "title": "Production Agency - Portfolio"
+  },
+  "header": {
+    "brand": "Production Agency",
+    "cta": "START PROJECT",
+    "nav": {
+      "services": "DỊCH VỤ",
+      "portfolio": "DỰ ÁN",
+      "about": "GIỚI THIỆU",
+      "contact": "LIÊN HỆ"
+    }
+  },
+  "hero": {
+    "badge": "Production Agency",
+    "titleLine1": "THE MEDIA",
+    "titleLine2": "PRODUCTION",
+    "subtitle": "Kiến tạo hình ảnh - Nâng tầm thương hiệu",
+    "stats": {
+      "produced": "Video đã sản xuất",
+      "views": "Tổng lượt xem",
+      "partners": "Đối tác & Nhãn hàng"
+    }
+  },
+  "clients": {
+    "title": "KHÁCH HÀNG TIN CẬY",
+    "noteLine1": "TECHNICAL PRECISION MEETS RAW",
+    "noteLine2": "CREATIVE ENERGY."
+  },
+  "servicesV2": {
+    "title": "PHIM QUẢNG CÁO",
+    "accent": "(TVC)",
+    "description": "Đưa câu chuyện thương hiệu đến gần hơn với khách hàng qua những khung hình điện ảnh, đạt chuẩn phát sóng truyền hình và digital media.",
+    "deliverables": {
+      "one": {
+        "label": "DELIVERABLE 01",
+        "value": "4K/6K Cinematic Event Film",
+        "detail": "(Duration: 1m30s - 7m)"
+      },
+      "two": {
+        "label": "DELIVERABLE 02",
+        "value": "Full Multi-angle Production",
+        "tag": "COMPLIMENTARY ADD-ON"
+      }
+    }
+  },
+  "serviceFocus": {
+    "titleLine1": "FOCUS",
+    "titleLine2": "CẬN",
+    "description": "Ghi hình đặc tả cho sản phẩm cao cấp hoặc KOLs. Bắt trọn từng chuyển động sắc nét, biểu cảm chi tiết và sức mạnh hình thể thông qua hệ thống lens macro và high-speed.",
+    "bullets": {
+      "one": "PRODUCT FOCUS",
+      "two": "ATHLETE MOTION",
+      "three": "60-120 FPS"
+    }
+  },
+  "serviceEvent": {
+    "badge": "HIGH-ENERGY RECAP",
+    "titleLine1": "EVENT RECAP",
+    "titleLine2": "& HIGHLIGHT",
+    "description": "Lưu giữ không khí bùng nổ của sự kiện. Biên tập nhịp điệu nhanh, âm nhạc sôi động và góc quay đa dạng để tái hiện trải nghiệm chân thực nhất.",
+    "deliverables": {
+      "one": {
+        "label": "DELIVERABLE 01",
+        "value": "4K Cinematic Video Recap"
+      },
+      "two": {
+        "label": "DELIVERABLE 02",
+        "value": "10 Professional Highlights",
+        "tag": "BADGE INCLUDED"
+      }
+    }
+  },
+  "serviceProduct": {
+    "eyebrow": "DETAIL ORIENTED",
+    "titleLine1": "PRODUCT",
+    "titleLine2": "REVIEW",
+    "description": "Truyền tải thông điệp thương hiệu trực quan, tin cậy. Tập trung vào tính năng, trải nghiệm sử dụng thực tế và vẻ đẹp thẩm mỹ của sản phẩm qua những khung hình tinh tế.",
+    "stats": {
+      "resolution": "RESOLUTION",
+      "detailing": "DETAILING",
+      "environment": "ENVIRONMENT"
+    }
+  },
+  "fullMatch": {
+    "badge": "QUAY FULL TRẬN ĐẤU",
+    "titleLine1": "GHI HÌNH",
+    "titleLine2": "TOÀN TRẬN ĐẤU",
+    "accent": "(FULL MATCH)",
+    "description": "Ghi hình toàn cảnh trận đấu thể thao phục vụ lưu trữ, phân tích chuyên môn và truyền thông. Góc quay rộng, ổn định, bao quát toàn bộ diễn biến trên sân.",
+    "meta": "TECHNICAL RECORD"
+  },
+  "contact": {
+    "titleLine1": "LET'S BUILD YOUR",
+    "titleHighlight": "VISION.",
+    "cta": "GET IN TOUCH"
+  },
+  "footer": {
+    "tagline": "HIGH-END MEDIA PRODUCTION AGENCY",
+    "socialTitle": "SOCIAL",
+    "contactTitle": "CONTACT",
+    "rights": "©2026 KINETIC BLUEPRINT. ALL RIGHTS RESERVED.",
+    "privacy": "Privacy Policy"
+  }
+}

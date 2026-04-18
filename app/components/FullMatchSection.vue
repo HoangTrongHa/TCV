@@ -1,4 +1,6 @@
 <script setup lang="ts">
+const { t } = useI18n()
+
 const fullMatchAssets = {
   overlay: '/figma/full-match/overlay.jpg',
   icon: '/figma/full-match/icon.svg',
@@ -12,28 +14,25 @@ const fullMatchAssets = {
       <div class="full-match-v2__left">
         <div class="full-match-v2__top">
           <div class="full-match-v2__head">
-            <span class="full-match-v2__badge">QUAY FULL TRAN DAU</span>
+            <span class="full-match-v2__badge">{{ t('fullMatch.badge') }}</span>
             <img :src="fullMatchAssets.icon" alt="">
           </div>
 
           <h2>
-            GHI HINH
+            {{ t('fullMatch.titleLine1') }}
             <br>
-            TOAN TRAN DAU
+            {{ t('fullMatch.titleLine2') }}
             <br>
-            <span>(FULL MATCH)</span>
+            <span>{{ t('fullMatch.accent') }}</span>
           </h2>
 
-          <p>
-            Ghi hinh toan canh tran dau the thao phuc vu luu tru, phan tich chuyen mon va truyen
-            thong. Goc quay rong, on dinh, bao quat toan bo dien bien tren san.
-          </p>
+          <p>{{ t('fullMatch.description') }}</p>
         </div>
 
         <div class="full-match-v2__meta">
           <img :src="fullMatchAssets.camera" alt="">
           <div class="full-match-v2__line" />
-          <span>TECHNICAL RECORD</span>
+          <span>{{ t('fullMatch.meta') }}</span>
         </div>
       </div>
 

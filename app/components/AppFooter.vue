@@ -1,27 +1,31 @@
+<script setup lang="ts">
+const { t } = useI18n()
+</script>
+
 <template>
   <footer class="app-footer" data-node-id="21:2015">
     <div class="app-footer__grid">
       <div class="app-footer__col app-footer__col--brand">
-        <h3>Production Agency</h3>
-        <p>HIGH-END MEDIA PRODUCTION AGENCY</p>
+        <h3>{{ t('header.brand') }}</h3>
+        <p>{{ t('footer.tagline') }}</p>
       </div>
 
       <div class="app-footer__col">
-        <h4>SOCIAL</h4>
+        <h4>{{ t('footer.socialTitle') }}</h4>
         <a href="#">Instagram</a>
         <a href="#">Vimeo</a>
         <a href="#">LinkedIn</a>
       </div>
 
       <div class="app-footer__col">
-        <h4>CONTACT</h4>
+        <h4>{{ t('footer.contactTitle') }}</h4>
         <a href="mailto:hello@kinetic.blueprint">HELLO@KINETIC.BLUEPRINT</a>
         <a href="tel:+84000000000">+84 000 000 000</a>
       </div>
 
       <div class="app-footer__col app-footer__col--legal">
-        <p class="app-footer__rights">&copy;2024 KINETIC BLUEPRINT. ALL RIGHTS RESERVED.</p>
-        <a href="#">Privacy Policy</a>
+        <p class="app-footer__rights">{{ t('footer.rights') }}</p>
+        <a href="#">{{ t('footer.privacy') }}</a>
       </div>
     </div>
   </footer>

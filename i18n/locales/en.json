@@ -1,0 +1,106 @@
+{
+  "seo": {
+    "title": "Production Agency - Portfolio"
+  },
+  "header": {
+    "brand": "Production Agency",
+    "cta": "START PROJECT",
+    "nav": {
+      "services": "SERVICES",
+      "portfolio": "PORTFOLIO",
+      "about": "ABOUT",
+      "contact": "CONTACT"
+    }
+  },
+  "hero": {
+    "badge": "Production Agency",
+    "titleLine1": "THE MEDIA",
+    "titleLine2": "PRODUCTION",
+    "subtitle": "Crafting visuals that elevate your brand",
+    "stats": {
+      "produced": "Videos produced",
+      "views": "Total views",
+      "partners": "Partners & Brands"
+    }
+  },
+  "clients": {
+    "title": "TRUSTED CLIENTS",
+    "noteLine1": "TECHNICAL PRECISION MEETS RAW",
+    "noteLine2": "CREATIVE ENERGY."
+  },
+  "servicesV2": {
+    "title": "COMMERCIAL",
+    "accent": "(TVC)",
+    "description": "Bring your brand story closer to your audience through cinematic frames, crafted for broadcast quality and digital media standards.",
+    "deliverables": {
+      "one": {
+        "label": "DELIVERABLE 01",
+        "value": "4K/6K Cinematic Event Film",
+        "detail": "(Duration: 1m30s - 7m)"
+      },
+      "two": {
+        "label": "DELIVERABLE 02",
+        "value": "Full Multi-angle Production",
+        "tag": "COMPLIMENTARY ADD-ON"
+      }
+    }
+  },
+  "serviceFocus": {
+    "titleLine1": "FOCUS",
+    "titleLine2": "CAM",
+    "description": "High-detail capture for premium products and KOLs. Every sharp movement, expression, and body line is preserved with macro and high-speed lens setups.",
+    "bullets": {
+      "one": "PRODUCT FOCUS",
+      "two": "ATHLETE MOTION",
+      "three": "60-120 FPS"
+    }
+  },
+  "serviceEvent": {
+    "badge": "HIGH-ENERGY RECAP",
+    "titleLine1": "EVENT RECAP",
+    "titleLine2": "& HIGHLIGHT",
+    "description": "Preserve the energy of every event. Fast-paced editing, impactful music, and diverse angles recreate the most authentic experience.",
+    "deliverables": {
+      "one": {
+        "label": "DELIVERABLE 01",
+        "value": "4K Cinematic Video Recap"
+      },
+      "two": {
+        "label": "DELIVERABLE 02",
+        "value": "10 Professional Highlights",
+        "tag": "BADGE INCLUDED"
+      }
+    }
+  },
+  "serviceProduct": {
+    "eyebrow": "DETAIL ORIENTED",
+    "titleLine1": "PRODUCT",
+    "titleLine2": "REVIEW",
+    "description": "Deliver your brand message with clarity and trust by showcasing features, real usage, and product aesthetics through refined visuals.",
+    "stats": {
+      "resolution": "RESOLUTION",
+      "detailing": "DETAILING",
+      "environment": "ENVIRONMENT"
+    }
+  },
+  "fullMatch": {
+    "badge": "FULL MATCH COVERAGE",
+    "titleLine1": "COMPLETE",
+    "titleLine2": "MATCH RECORD",
+    "accent": "(FULL MATCH)",
+    "description": "Capture the entire sports match for archive, technical analysis, and media use. Wide, stable framing covers every key moment on the field.",
+    "meta": "TECHNICAL RECORD"
+  },
+  "contact": {
+    "titleLine1": "LET'S BUILD YOUR",
+    "titleHighlight": "VISION.",
+    "cta": "GET IN TOUCH"
+  },
+  "footer": {
+    "tagline": "HIGH-END MEDIA PRODUCTION AGENCY",
+    "socialTitle": "SOCIAL",
+    "contactTitle": "CONTACT",
+    "rights": "©2026 KINETIC BLUEPRINT. ALL RIGHTS RESERVED.",
+    "privacy": "Privacy Policy"
+  }
+}

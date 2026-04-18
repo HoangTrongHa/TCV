@@ -1,27 +1,84 @@
-<script setup lang="ts">
-const navItems = [
-  { label: 'SERVICES', href: '#', active: true },
-  { label: 'PORTFOLIO', href: '#', active: false },
-  { label: 'ABOUT', href: '#', active: false },
-  { label: 'CONTACT', href: '#contact', active: false },
-]
+﻿<script setup lang="ts">
+const { t, te, locale, setLocale } = useI18n()
+
+const navLabelFallback = {
+  vi: {
+    services: 'DỊCH VỤ',
+    portfolio: 'DỰ ÁN',
+    about: 'GIỚI THIỆU',
+    contact: 'LIÊN HỆ',
+  },
+  en: {
+    services: 'SERVICES',
+    portfolio: 'PORTFOLIO',
+    about: 'ABOUT',
+    contact: 'CONTACT',
+  },
+} as const
+
+const trNav = (key: 'services' | 'portfolio' | 'about' | 'contact') => {
+  const i18nKey = `header.nav.${key}`
+  if (te(i18nKey))
+    return t(i18nKey)
+
+  const lang = locale.value === 'en' ? 'en' : 'vi'
+  return navLabelFallback[lang][key]
+}
+
+const navItems = computed(() => [
+  { label: trNav('services'), href: '#services', active: false },
+  { label: trNav('portfolio'), href: '#portfolio', active: false },
+  { label: trNav('about'), href: '#about', active: false },
+  { label: trNav('contact'), href: '#contact', active: false },
+])
+
+const onSwitchLocale = async (targetLocale: 'vi' | 'en') => {
+  if (locale.value === targetLocale)
+    return
+
+  await setLocale(targetLocale)
+}
 </script>
 
 <template>
   <header class="app-header" data-node-id="8:1141">
     <div class="app-header__inner">
-      <div class="app-header__brand">Production Agency</div>
+      <div class="app-header__brand">{{ t('header.brand') }}</div>
       <nav class="app-header__menu">
         <a
           v-for="item in navItems"
-          :key="item.label"
+          :key="`${item.href}-${item.label}`"
           :href="item.href"
           :class="{ active: item.active }"
         >
           {{ item.label }}
         </a>
       </nav>
-      <a class="app-header__cta" href="#contact">START PROJECT</a>
+      <div class="app-header__lang" aria-label="Language switcher">
+        <span class="app-header__lang-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" focusable="false">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2Zm6.92 9h-3.01a15.76 15.76 0 0 0-1.38-5.01A8.03 8.03 0 0 1 18.92 11ZM12 4.04c.83 1.2 1.87 3.6 2.36 6.96H9.64C10.13 7.64 11.17 5.24 12 4.04ZM4.26 13h3.02c.12 1.78.59 3.5 1.37 5.01A8.03 8.03 0 0 1 4.26 13Zm3.02-2H4.26a8.03 8.03 0 0 1 4.39-5.01A15.72 15.72 0 0 0 7.28 11Zm1.99 0c.55-3.64 1.75-6.3 2.73-7.55.98 1.25 2.18 3.91 2.73 7.55H9.27Zm0 2h5.46c-.55 3.64-1.75 6.3-2.73 7.55-.98-1.25-2.18-3.91-2.73-7.55Zm5.08 5.01A15.76 15.76 0 0 0 15.72 13h3.01a8.03 8.03 0 0 1-4.38 5.01Z" />
+          </svg>
+        </span>
+        <button
+          type="button"
+          class="app-header__lang-button"
+          :class="{ active: locale === 'vi' }"
+          @click="onSwitchLocale('vi')"
+        >
+          VI
+        </button>
+        <span class="app-header__lang-sep">/</span>
+        <button
+          type="button"
+          class="app-header__lang-button"
+          :class="{ active: locale === 'en' }"
+          @click="onSwitchLocale('en')"
+        >
+          EN
+        </button>
+      </div>
+      <a class="app-header__cta" href="#contact">{{ t('header.cta') }}</a>
     </div>
   </header>
 </template>
@@ -81,6 +138,62 @@ const navItems = [
   border-bottom-color: #ff5722;
 }
 
+.app-header__lang {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: 20px;
+  color: rgba(255, 255, 255, 0.62);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.1px;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.app-header__lang-button {
+  border: 0;
+  padding: 0;
+  background: transparent;
+  font: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+.app-header__lang-button:focus-visible {
+  outline: 1px solid rgba(255, 87, 34, 0.7);
+  outline-offset: 2px;
+}
+
+.app-header__lang button {
+  color: inherit;
+}
+
+.app-header__lang-button.active {
+  color: #ff5722;
+}
+
+.app-header__lang-sep {
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.app-header__lang-icon {
+  width: 16px;
+  height: 16px;
+  display: grid;
+  place-items: center;
+}
+
+.app-header__lang-icon svg {
+  width: 100%;
+  height: 100%;
+  fill: currentColor;
+}
+
 .app-header__cta {
   padding: 8px 24px;
   background: #ff5722;
@@ -105,6 +218,10 @@ const navItems = [
   .app-header__menu {
     display: none;
   }
+
+  .app-header__lang {
+    margin-left: auto;
+  }
 }
 
 @media (max-width: 560px) {
@@ -115,3 +232,4 @@ const navItems = [
   }
 }
 </style>
+

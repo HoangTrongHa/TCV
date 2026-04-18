@@ -1,4 +1,6 @@
 <script setup lang="ts">
+const { t } = useI18n()
+
 const ctaAssets = {
   union: '/figma/cta/union.svg',
   ellipse: '/figma/cta/ellipse.svg',
@@ -12,11 +14,11 @@ const ctaAssets = {
 
     <div class="contact-cta__inner">
       <h2>
-        LET'S BUILD YOUR
-        <span>VISION.</span>
+        {{ t('contact.titleLine1') }}
+        <span>{{ t('contact.titleHighlight') }}</span>
       </h2>
 
-      <a href="mailto:hello@kinetic.blueprint">GET IN TOUCH</a>
+      <a href="mailto:hello@kinetic.blueprint">{{ t('contact.cta') }}</a>
     </div>
   </section>
 </template>

@@ -1,11 +1,13 @@
 <script setup lang="ts">
+const { t } = useI18n()
+
 const heroMaskImage = '/figma/hero-folder-mask.svg'
 
-const heroStats = [
-  { value: '[500]+', label: 'Video da san xuat' },
-  { value: '[10]M+', label: 'Tong luot xem' },
-  { value: '[20]+', label: 'Doi tac & Nhan hang' },
-]
+const heroStats = computed(() => [
+  { value: '[500]+', label: t('hero.stats.produced') },
+  { value: '[10]M+', label: t('hero.stats.views') },
+  { value: '[20]+', label: t('hero.stats.partners') },
+])
 
 const heroCardMaskStyle = {
   WebkitMaskImage: `url('${heroMaskImage}')`,
@@ -23,13 +25,13 @@ const heroCardMaskStyle = {
       <article class="hero-card" :style="heroCardMaskStyle">
         <div class="hero-card__line" />
         <div class="hero-card__content">
-          <div class="hero-badge">Production Agency</div>
+          <div class="hero-badge">{{ t('hero.badge') }}</div>
           <h1>
-            THE MEDIA
+            {{ t('hero.titleLine1') }}
             <br>
-            PRODUCTION
+            {{ t('hero.titleLine2') }}
           </h1>
-          <p>Kien tao hinh anh - Nang tam thuong hieu</p>
+          <p>{{ t('hero.subtitle') }}</p>
         </div>
       </article>
 
@@ -70,36 +72,36 @@ const heroCardMaskStyle = {
 }
 
 .hero-glow--main {
-  left: 27%;
+  left: 30%;
   top: 50%;
-  width: 864px;
-  height: 861px;
+  width: 640px;
+  height: 640px;
   transform: translate(-50%, -50%);
-  filter: blur(110px);
+  filter: blur(90px);
   background:
-    radial-gradient(circle, rgba(255, 87, 34, 0.15) 0%, rgba(255, 87, 34, 0) 70%),
-    rgba(255, 87, 34, 0.2);
+    radial-gradient(circle, rgba(255, 87, 34, 0.13) 0%, rgba(255, 87, 34, 0) 70%),
+    rgba(255, 87, 34, 0.12);
 }
 
 .hero-glow--right-bottom,
 .hero-glow--right-top {
-  width: 392px;
-  height: 392px;
-  filter: blur(100px);
+  width: 280px;
+  height: 280px;
+  filter: blur(78px);
   background:
-    radial-gradient(circle, rgba(255, 87, 34, 0.15) 0%, rgba(255, 87, 34, 0) 70%),
-    rgba(255, 87, 34, 0.1);
+    radial-gradient(circle, rgba(255, 87, 34, 0.12) 0%, rgba(255, 87, 34, 0) 70%),
+    rgba(255, 87, 34, 0.07);
 }
 
 .hero-glow--right-bottom {
-  left: calc(50% + 616px);
-  top: calc(50% + 201px);
+  left: calc(50% + 540px);
+  top: calc(50% + 168px);
   transform: translate(-50%, -50%);
 }
 
 .hero-glow--right-top {
-  left: calc(50% + 898px);
-  top: calc(50% - 232px);
+  left: calc(50% + 760px);
+  top: calc(50% - 180px);
   transform: translate(-50%, -50%);
 }
 
@@ -113,7 +115,9 @@ const heroCardMaskStyle = {
   border: 1px solid rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
   background:
-    linear-gradient(99deg, rgba(255, 87, 34, 0.22) 0%, rgba(255, 87, 34, 0.16) 38%, rgba(8, 14, 25, 0.5) 100%),
+    radial-gradient(240px 240px at 18% 50%, rgba(255, 87, 34, 0.22) 0%, rgba(255, 87, 34, 0.12) 34%, rgba(255, 87, 34, 0) 72%),
+    radial-gradient(150px 150px at 30% 46%, rgba(255, 87, 34, 0.12) 0%, rgba(255, 87, 34, 0) 76%),
+    linear-gradient(108deg, rgba(21, 28, 42, 0.48) 0%, rgba(8, 14, 25, 0.6) 100%),
     rgba(255, 255, 255, 0.05);
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
@@ -220,6 +224,29 @@ p {
 }
 
 @media (max-width: 1500px) {
+  .hero-glow--main {
+    width: 560px;
+    height: 560px;
+    filter: blur(78px);
+  }
+
+  .hero-glow--right-bottom,
+  .hero-glow--right-top {
+    width: 240px;
+    height: 240px;
+    filter: blur(66px);
+  }
+
+  .hero-glow--right-bottom {
+    left: calc(50% + 470px);
+    top: calc(50% + 150px);
+  }
+
+  .hero-glow--right-top {
+    left: calc(50% + 650px);
+    top: calc(50% - 160px);
+  }
+
   h1 {
     font-size: 88px;
     letter-spacing: -4px;
@@ -233,6 +260,18 @@ p {
 }
 
 @media (max-width: 1180px) {
+  .hero-glow--main {
+    left: 42%;
+    width: 480px;
+    height: 480px;
+    filter: blur(70px);
+  }
+
+  .hero-glow--right-bottom,
+  .hero-glow--right-top {
+    display: none;
+  }
+
   .hero-section {
     min-height: auto;
     padding-top: 116px;
@@ -268,6 +307,14 @@ p {
 }
 
 @media (max-width: 820px) {
+  .hero-card {
+    background:
+      radial-gradient(170px 170px at 20% 48%, rgba(255, 87, 34, 0.2) 0%, rgba(255, 87, 34, 0.1) 34%, rgba(255, 87, 34, 0) 72%),
+      radial-gradient(110px 110px at 32% 44%, rgba(255, 87, 34, 0.1) 0%, rgba(255, 87, 34, 0) 76%),
+      linear-gradient(108deg, rgba(21, 28, 42, 0.5) 0%, rgba(8, 14, 25, 0.62) 100%),
+      rgba(255, 255, 255, 0.05);
+  }
+
   .hero-section {
     padding-top: 104px;
     padding-bottom: 64px;
