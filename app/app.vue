@@ -1,10 +1,4 @@
 <script setup lang="ts">
-import type { Swiper as SwiperInstance } from 'swiper/types'
-import { EffectCreative } from 'swiper/modules'
-import { Swiper, SwiperSlide } from 'swiper/vue'
-import 'swiper/css'
-import 'swiper/css/effect-creative'
-
 const clientLogoMasks = [
   {
     id: 'wika',
@@ -162,114 +156,6 @@ const onServiceVideoHoverEnd = () => {
   void syncServiceVideoState()
 }
 
-const serviceFocusMediaRef = ref<HTMLElement | null>(null)
-const serviceFocusVideoRefs = ref<Array<HTMLVideoElement | null>>([])
-const serviceFocusInView = ref(false)
-const serviceFocusActiveIndex = ref(0)
-const serviceFocusAudioAllowed = ref(false)
-let serviceFocusObserver: IntersectionObserver | null = null
-let serviceFocusUnlockAudioHandler: (() => void) | null = null
-const serviceFocusSwiperModules = [EffectCreative]
-const serviceFocusCreativeEffect = {
-  limitProgress: 2,
-  prev: {
-    translate: ['-26%', '8%', -120] as [string, string, number],
-    scale: 0.9,
-    opacity: 0.82,
-  },
-  next: {
-    translate: ['26%', '8%', -120] as [string, string, number],
-    scale: 0.9,
-    opacity: 0.82,
-  },
-}
-const serviceFocusBreakpoints = {
-  0: {
-    slidesPerView: 1,
-    spaceBetween: 0,
-  },
-  821: {
-    slidesPerView: 1.1,
-    spaceBetween: -140,
-  },
-}
-
-const setServiceFocusVideoRef = (el: unknown, index: number) => {
-  serviceFocusVideoRefs.value[index] = el as HTMLVideoElement | null
-  syncServiceFocusVideoState()
-}
-
-const clearServiceFocusUnlockAudioHandler = () => {
-  if (!serviceFocusUnlockAudioHandler)
-    return
-
-  window.removeEventListener('pointerdown', serviceFocusUnlockAudioHandler)
-  window.removeEventListener('touchstart', serviceFocusUnlockAudioHandler)
-  window.removeEventListener('keydown', serviceFocusUnlockAudioHandler)
-  serviceFocusUnlockAudioHandler = null
-}
-
-const registerServiceFocusUnlockAudioHandler = () => {
-  if (serviceFocusUnlockAudioHandler || typeof window === 'undefined')
-    return
-
-  serviceFocusUnlockAudioHandler = () => {
-    serviceFocusAudioAllowed.value = true
-    clearServiceFocusUnlockAudioHandler()
-    syncServiceFocusVideoState()
-  }
-
-  window.addEventListener('pointerdown', serviceFocusUnlockAudioHandler, { once: true })
-  window.addEventListener('touchstart', serviceFocusUnlockAudioHandler, { once: true })
-  window.addEventListener('keydown', serviceFocusUnlockAudioHandler, { once: true })
-}
-
-const syncServiceFocusVideoState = () => {
-  serviceFocusVideoRefs.value.forEach((video, index) => {
-    if (!video)
-      return
-
-    const shouldPlay = serviceFocusInView.value && index === serviceFocusActiveIndex.value
-    if (!shouldPlay) {
-      video.muted = true
-      video.pause()
-      return
-    }
-
-    video.volume = 1
-    video.muted = !serviceFocusAudioAllowed.value
-
-    void video.play().catch(async () => {
-      video.muted = true
-      try {
-        await video.play()
-        registerServiceFocusUnlockAudioHandler()
-      } catch {
-        // Ignore when browser keeps blocking media playback.
-      }
-    })
-  })
-}
-
-const onServiceFocusSlideChange = (swiper: SwiperInstance) => {
-  serviceFocusActiveIndex.value = swiper.realIndex
-  syncServiceFocusVideoState()
-}
-
-const onServiceFocusSwiperInit = (swiper: SwiperInstance) => {
-  serviceFocusActiveIndex.value = swiper.realIndex
-  syncServiceFocusVideoState()
-}
-
-const onServiceFocusAudioIntent = () => {
-  if (serviceFocusAudioAllowed.value)
-    return
-
-  serviceFocusAudioAllowed.value = true
-  clearServiceFocusUnlockAudioHandler()
-  syncServiceFocusVideoState()
-}
-
 const serviceEventMediaRef = ref<HTMLElement | null>(null)
 const serviceEventVideoRef = ref<HTMLVideoElement | null>(null)
 const serviceEventInView = ref(false)
@@ -338,135 +224,10 @@ const onServiceEventAudioIntent = () => {
   void syncServiceEventVideoState()
 }
 
-const serviceProductMediaRef = ref<HTMLElement | null>(null)
-const serviceProductSwiperRef = ref<SwiperInstance | null>(null)
-const serviceProductVideoRefs = ref<Array<HTMLVideoElement | null>>([])
-const serviceProductInView = ref(false)
-const serviceProductActiveIndex = ref(0)
-const serviceProductAudioAllowed = ref(false)
-let serviceProductObserver: IntersectionObserver | null = null
-let serviceProductUnlockAudioHandler: (() => void) | null = null
-
-const setServiceProductVideoRef = (el: unknown, index: number) => {
-  serviceProductVideoRefs.value[index] = el as HTMLVideoElement | null
-  void syncServiceProductVideoState()
-}
-
-const clearServiceProductUnlockAudioHandler = () => {
-  if (!serviceProductUnlockAudioHandler)
-    return
-
-  window.removeEventListener('pointerdown', serviceProductUnlockAudioHandler)
-  window.removeEventListener('touchstart', serviceProductUnlockAudioHandler)
-  window.removeEventListener('keydown', serviceProductUnlockAudioHandler)
-  serviceProductUnlockAudioHandler = null
-}
-
-const registerServiceProductUnlockAudioHandler = () => {
-  if (serviceProductUnlockAudioHandler || typeof window === 'undefined')
-    return
-
-  serviceProductUnlockAudioHandler = () => {
-    serviceProductAudioAllowed.value = true
-    clearServiceProductUnlockAudioHandler()
-    void syncServiceProductVideoState()
-  }
-
-  window.addEventListener('pointerdown', serviceProductUnlockAudioHandler, { once: true })
-  window.addEventListener('touchstart', serviceProductUnlockAudioHandler, { once: true })
-  window.addEventListener('keydown', serviceProductUnlockAudioHandler, { once: true })
-}
-
-const syncServiceProductVideoState = async () => {
-  const syncTasks = serviceProductVideoRefs.value.map(async (video, index) => {
-    if (!video)
-      return
-
-    const shouldPlay = serviceProductInView.value && index === serviceProductActiveIndex.value
-    if (!shouldPlay) {
-      video.muted = true
-      video.pause()
-      return
-    }
-
-    if (video.ended || (Number.isFinite(video.duration) && video.duration > 0 && video.currentTime >= video.duration - 0.05))
-      video.currentTime = 0
-
-    video.volume = 1
-    video.muted = !serviceProductAudioAllowed.value
-
-    try {
-      await video.play()
-    } catch {
-      video.muted = true
-      try {
-        await video.play()
-        registerServiceProductUnlockAudioHandler()
-      } catch {
-        // Ignore when browser keeps blocking media playback.
-      }
-    }
-  })
-
-  await Promise.all(syncTasks)
-}
-
-const onServiceProductSlideChange = (swiper: SwiperInstance) => {
-  serviceProductActiveIndex.value = swiper.realIndex
-  void syncServiceProductVideoState()
-}
-
-const onServiceProductSwiperInit = (swiper: SwiperInstance) => {
-  serviceProductSwiperRef.value = swiper
-  serviceProductActiveIndex.value = swiper.realIndex
-  void syncServiceProductVideoState()
-}
-
-const onServiceProductAudioIntent = () => {
-  if (serviceProductAudioAllowed.value)
-    return
-
-  serviceProductAudioAllowed.value = true
-  clearServiceProductUnlockAudioHandler()
-  void syncServiceProductVideoState()
-}
-
-const onServiceProductGoToSlide = (index: number) => {
-  onServiceProductAudioIntent()
-  serviceProductSwiperRef.value?.slideToLoop(index)
-}
-
-const onServiceProductPrev = () => {
-  onServiceProductAudioIntent()
-  serviceProductSwiperRef.value?.slidePrev()
-}
-
-const onServiceProductNext = () => {
-  onServiceProductAudioIntent()
-  serviceProductSwiperRef.value?.slideNext()
-}
-
-const onServiceProductVideoEnded = (index: number) => {
-  if (index !== serviceProductActiveIndex.value)
-    return
-
-  serviceProductSwiperRef.value?.slideNext()
-}
-
-watch([serviceFocusInView, serviceFocusActiveIndex], () => {
-  syncServiceFocusVideoState()
-})
-
-watch([serviceProductInView, serviceProductActiveIndex], () => {
-  void syncServiceProductVideoState()
-})
-
 onMounted(() => {
   const video = serviceVideoRef.value
-  const focusMedia = serviceFocusMediaRef.value
   const eventMedia = serviceEventMediaRef.value
   const eventVideo = serviceEventVideoRef.value
-  const productMedia = serviceProductMediaRef.value
 
   if (video) {
     video.muted = true
@@ -492,24 +253,6 @@ onMounted(() => {
     }
   }
 
-  if (focusMedia) {
-    if (typeof IntersectionObserver === 'undefined') {
-      serviceFocusInView.value = true
-      syncServiceFocusVideoState()
-    } else {
-      serviceFocusObserver = new IntersectionObserver((entries) => {
-        const entry = entries[0]
-        if (!entry)
-          return
-
-        serviceFocusInView.value = entry.isIntersecting
-        syncServiceFocusVideoState()
-      }, { threshold: 0.35 })
-
-      serviceFocusObserver.observe(focusMedia)
-    }
-  }
-
   if (eventVideo)
     eventVideo.volume = 1
 
@@ -530,24 +273,6 @@ onMounted(() => {
       serviceEventObserver.observe(eventMedia)
     }
   }
-
-  if (productMedia) {
-    if (typeof IntersectionObserver === 'undefined') {
-      serviceProductInView.value = true
-      void syncServiceProductVideoState()
-    } else {
-      serviceProductObserver = new IntersectionObserver((entries) => {
-        const entry = entries[0]
-        if (!entry)
-          return
-
-        serviceProductInView.value = entry.isIntersecting
-        void syncServiceProductVideoState()
-      }, { threshold: 0.35 })
-
-      serviceProductObserver.observe(productMedia)
-    }
-  }
 })
 
 onBeforeUnmount(() => {
@@ -561,18 +286,6 @@ onBeforeUnmount(() => {
   serviceVideoObserver?.disconnect()
   serviceVideoObserver = null
 
-  if (serviceFocusObserver && serviceFocusMediaRef.value)
-    serviceFocusObserver.unobserve(serviceFocusMediaRef.value)
-
-  serviceFocusObserver?.disconnect()
-  serviceFocusObserver = null
-
-  clearServiceFocusUnlockAudioHandler()
-
-  serviceFocusVideoRefs.value.forEach((focusVideo) => {
-    focusVideo?.pause()
-  })
-
   if (serviceEventObserver && serviceEventMediaRef.value)
     serviceEventObserver.unobserve(serviceEventMediaRef.value)
 
@@ -580,16 +293,6 @@ onBeforeUnmount(() => {
   serviceEventObserver = null
   clearServiceEventUnlockAudioHandler()
   serviceEventVideoRef.value?.pause()
-
-  if (serviceProductObserver && serviceProductMediaRef.value)
-    serviceProductObserver.unobserve(serviceProductMediaRef.value)
-
-  serviceProductObserver?.disconnect()
-  serviceProductObserver = null
-  clearServiceProductUnlockAudioHandler()
-  serviceProductVideoRefs.value.forEach((productVideo) => {
-    productVideo?.pause()
-  })
 })
 
 useHead(() => ({
@@ -684,45 +387,11 @@ useHead(() => ({
       </section>
 
       <section id="portfolio" class="service-focus" data-node-id="19:1631">
-        <div
-          ref="serviceFocusMediaRef"
-          class="service-focus-media"
-          @pointerdown="onServiceFocusAudioIntent"
-          @touchstart.passive="onServiceFocusAudioIntent"
-        >
-          <ClientOnly>
-            <Swiper
-              class="service-focus-swiper"
-              :modules="serviceFocusSwiperModules"
-              effect="creative"
-              :creative-effect="serviceFocusCreativeEffect"
-              :breakpoints="serviceFocusBreakpoints"
-              :centered-slides="true"
-              :grab-cursor="true"
-              @swiper="onServiceFocusSwiperInit"
-              @slideChange="onServiceFocusSlideChange"
-            >
-              <SwiperSlide
-                v-for="(videoSrc, index) in serviceFocus.videos"
-                :key="videoSrc"
-                class="service-focus-slide"
-              >
-                <video
-                  :ref="(el) => setServiceFocusVideoRef(el, index)"
-                  class="service-focus-video"
-                  :src="videoSrc"
-                  playsinline
-                  loop
-                  muted
-                  preload="metadata"
-                />
-              </SwiperSlide>
-            </Swiper>
-            <template #fallback>
-              <img class="service-focus-video" :src="serviceFocus.poster" alt="Focus cam visual">
-            </template>
-          </ClientOnly>
-        </div>
+        <LazyServiceFocusMedia
+          hydrate-on-visible
+          :videos="serviceFocus.videos"
+          :poster="serviceFocus.poster"
+        />
 
         <div class="service-focus-content">
           <div class="service-focus-icon">
@@ -793,71 +462,13 @@ useHead(() => ({
       </section>
 
       <section class="service-product" data-node-id="21:2080">
-        <div class="service-product-media">
-          <div
-            ref="serviceProductMediaRef"
-            class="service-product-media-stage"
-            @pointerdown="onServiceProductAudioIntent"
-            @touchstart.passive="onServiceProductAudioIntent"
-          >
-            <ClientOnly>
-              <Swiper
-                class="service-product-swiper"
-                :slides-per-view="1"
-                :space-between="0"
-                :loop="true"
-                :grab-cursor="true"
-                @swiper="onServiceProductSwiperInit"
-                @slideChange="onServiceProductSlideChange"
-              >
-                <SwiperSlide
-                  v-for="(videoSrc, index) in serviceProduct.videos"
-                  :key="videoSrc"
-                  class="service-product-slide"
-                >
-                  <video
-                    :ref="(el) => setServiceProductVideoRef(el, index)"
-                    class="service-product-video"
-                    :src="videoSrc"
-                    :poster="serviceProduct.main"
-                    playsinline
-                    muted
-                    preload="metadata"
-                    @ended="onServiceProductVideoEnded(index)"
-                  />
-                </SwiperSlide>
-              </Swiper>
-              <template #fallback>
-                <img class="service-product-video" :src="serviceProduct.main" alt="Product review visual">
-              </template>
-            </ClientOnly>
-          </div>
-
-          <div class="service-product-controls">
-            <div class="service-product-dots">
-              <button
-                v-for="(_, index) in serviceProduct.videos"
-                :key="`service-product-dot-${index}`"
-                type="button"
-                class="service-product-dot-button"
-                :class="{ active: serviceProductActiveIndex === index }"
-                :aria-label="`Go to product slide ${index + 1}`"
-                @click="onServiceProductGoToSlide(index)"
-              >
-                <span />
-              </button>
-            </div>
-
-            <div class="service-product-arrows">
-              <button type="button" aria-label="Previous product video" @click="onServiceProductPrev">
-                <img :src="serviceSection.arrows.left" alt="">
-              </button>
-              <button type="button" aria-label="Next product video" @click="onServiceProductNext">
-                <img :src="serviceSection.arrows.right" alt="">
-              </button>
-            </div>
-          </div>
-        </div>
+        <LazyServiceProductMedia
+          hydrate-on-visible
+          :videos="serviceProduct.videos"
+          :poster="serviceProduct.main"
+          :left-arrow="serviceSection.arrows.left"
+          :right-arrow="serviceSection.arrows.right"
+        />
 
         <div class="service-product-content">
           <p class="service-product-eyebrow">{{ serviceProduct.eyebrow }}</p>
@@ -1235,25 +846,70 @@ h3 {
 }
 
 .service-focus-swiper,
-.service-focus-slide,
 .service-focus-video {
   width: 100%;
   height: 100%;
 }
 
-.service-focus-swiper {
-  overflow: visible;
+.service-focus-slide {
+  width: 100%;
+  height: 100%;
+}
+
+.service-focus-media .service-focus-swiper {
+  overflow: visible !important;
+}
+
+.service-focus-media .service-focus-swiper .swiper-wrapper {
+  align-items: center;
+  overflow: visible !important;
+}
+
+.service-focus-media .service-focus-swiper .swiper-slide {
+  overflow: visible !important;
 }
 
 .service-focus-slide {
-  border-radius: 4px;
-  overflow: hidden;
+  overflow: visible;
   transform-origin: center bottom;
-  transition: transform 320ms ease, opacity 320ms ease, filter 320ms ease;
+  transition: transform 380ms ease, opacity 380ms ease;
 }
 
-.service-focus-slide:not(.swiper-slide-active) {
-  filter: saturate(0.78) brightness(0.84);
+.service-focus-card {
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+  overflow: hidden;
+  transition: opacity 360ms ease, filter 360ms ease, box-shadow 360ms ease;
+  box-shadow: 0 24px 52px rgba(0, 0, 0, 0.42);
+}
+
+.service-focus-slide.swiper-slide-active .service-focus-card {
+  opacity: 1;
+  filter: none;
+  box-shadow: 0 36px 80px rgba(0, 0, 0, 0.56);
+}
+
+.service-focus-slide.swiper-slide-prev .service-focus-card {
+  opacity: 0.6;
+  filter: brightness(0.72) saturate(0.84);
+}
+
+.service-focus-slide.swiper-slide-next .service-focus-card {
+  opacity: 0.76;
+  filter: brightness(0.82) saturate(0.9);
+}
+
+.service-focus-slide.swiper-slide-active {
+  z-index: 3;
+}
+
+.service-focus-slide.swiper-slide-next {
+  z-index: 2;
+}
+
+.service-focus-slide.swiper-slide-prev {
+  z-index: 1;
 }
 
 .service-focus-video {
